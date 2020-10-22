@@ -47,6 +47,10 @@ jobs:
               end
             end
           "
+      - name: "Setup Git"
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "boxt-github-bot"
       - name: "Commit changes"
         run: git commit README.md -m 'Update snippet on README.Rmd' || echo "No changes to commit"
       - name: "Push changes"
