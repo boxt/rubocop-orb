@@ -1,0 +1,40 @@
+name: Add installation instructions for latest version
+on:
+  workflow_dispatch:
+
+jobs:
+  update-readme-with-installation-snippet:
+    name: "Update this repo's README with installation snippet using latest version"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+      - name: "Update README"
+        run: |
+          VERSION=$(cat VERSION)
+          SNIPPET=$(echo <<END
+          ## Add to your config.yml
+
+          ``` yml
+          orbs:
+            rubocop: boxt/rubocop@$VERSION"
+          END
+          )
+
+          PLACEHOLDER_START="<\!-- VERSION_SNIPPET_START -->"
+          PLACEHOLDER_END="<\!-- VERSION_SNIPPET_END -->"
+          FILENAME=README.md
+          ruby -e "
+            start_reg = Regexp.escape('$PLACEHOLDER_START')
+            end_reg   = Regexp.escape('$PLACEHOLDER_END')
+            File.open('./$FILENAME', 'r+') do |file|
+              file_content = file.read
+              file_content[/#{start_reg}(.*?)#{end_reg}/m, 0] = \"$SNIPPET\"
+              file.rewind
+              file.write(file_content)
+            end
+          "
+      - name: "Commit changes"
+        run: git commit README.md -m 'Update snippet on README.Rmd' || echo "No changes to commit"
+      - name: "Push changes"
+        run: git push origin || echo "No changes to commit"
