@@ -52,6 +52,6 @@ jobs:
           git config --global user.email "you@example.com"
           git config --global user.name "boxt-github-bot"
       - name: "Commit changes"
-        run: git commit README.md -m 'Update snippet on README.Rmd' || echo "No changes to commit"
+        run: git commit README.md -m 'Automatically update snippet on README.md' || echo "No changes to commit"
       - name: "Push changes"
         run: git push origin || echo "No changes to commit"
