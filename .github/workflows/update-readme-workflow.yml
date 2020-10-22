@@ -31,8 +31,8 @@ jobs:
           PLACEHOLDER_END="<\!-- VERSION_SNIPPET_END -->"
           FILENAME=README.md
           ruby -e "
-            start_reg = Regexp.escape('$PLACEHOLDER_START'.gsub(/\\\!/, '\!'))
-            end_reg   = Regexp.escape('$PLACEHOLDER_END'.gsub(/\\\!/, '\!'))
+            start_reg = Regexp.escape('$PLACEHOLDER_START'.gsub(/\\\!/, '!'))
+            end_reg   = Regexp.escape('$PLACEHOLDER_END'.gsub(/\\\!/, '!'))
             File.open('./$FILENAME', 'r+') do |file|
               file_content = file.read
               regexp = /#{start_reg}(.*?)#{end_reg}/m
