@@ -15,9 +15,11 @@ jobs:
           SNIPPET=$(echo <<END
           ## Add to your config.yml
 
-          ``` yml
+          \`\`\` yml
           orbs:
             rubocop: boxt/rubocop@$VERSION"
+          \`\`\`
+
           END
           )
 
@@ -25,8 +27,8 @@ jobs:
           PLACEHOLDER_END="<\!-- VERSION_SNIPPET_END -->"
           FILENAME=README.md
           ruby -e "
-            start_reg = Regexp.escape('$PLACEHOLDER_START')
-            end_reg   = Regexp.escape('$PLACEHOLDER_END')
+            start_reg = Regexp.escape('$PLACEHOLDER_START'.gsub(/\\\!/, '\!'))
+            end_reg   = Regexp.escape('$PLACEHOLDER_END'.gsub(/\\\!/, '\!'))
             File.open('./$FILENAME', 'r+') do |file|
               file_content = file.read
               file_content[/#{start_reg}(.*?)#{end_reg}/m, 0] = \"$SNIPPET\"

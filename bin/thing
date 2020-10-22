@@ -1,0 +1,41 @@
+#!/bin/bash
+
+VERSION=$(cat VERSION)
+SNIPPET=$(cat <<-END
+
+## Add to your config.yml
+
+\`\`\` yml
+orbs:
+  rubocop: boxt/rubocop@$VERSION
+
+\`\`\`
+
+---
+
+END
+)
+
+PLACEHOLDER_START="<\!-- VERSION_SNIPPET_START -->"
+PLACEHOLDER_END="<\!-- VERSION_SNIPPET_END -->"
+FILENAME=README.md
+ruby -e "
+  start_reg = Regexp.escape('$PLACEHOLDER_START'.gsub(/\\\!/, '\!'))
+  end_reg   = Regexp.escape('$PLACEHOLDER_END'.gsub(/\\\!/, '\!'))
+  File.open('./$FILENAME', 'r+') do |file|
+    file_content = file.read
+    regexp = /#{start_reg}(.*?)#{end_reg}/m
+    puts regexp.to_s
+    puts file_content
+    if regexp.match(file_content)
+      file_content[regexp, 1] = \"$SNIPPET\"
+      file.rewind
+      file.write(file_content)
+    else
+      puts 'No placeholder tags found'
+    end
+  end
+"
+
+git commit README.md -m 'Update snippet on README.Rmd' || echo "No changes to commit"
+git push origin || echo "No changes to commit"
