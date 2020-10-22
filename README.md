@@ -8,6 +8,7 @@ BOXT CircleCI Rubocop orb
 orbs:
   rubocop: boxt/rubocop@0.2.1
 
-```<!-- VERSION_SNIPPET_END -->
+```
+<!-- VERSION_SNIPPET_END -->
 
 Part of [boxt/orbs](https://github.com/boxt/orbs)
