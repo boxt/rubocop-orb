@@ -1,6 +1,6 @@
 version: 2.1
 
-descrption: Tasks for integrating Boxt's RuboCop style guide
+description: Tasks for integrating Boxt's RuboCop style guide
 
 display:
   home_url: "https://github.com/boxt/orbs"
