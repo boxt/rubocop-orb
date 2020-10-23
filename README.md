@@ -6,7 +6,7 @@ BOXT CircleCI Rubocop orb
 
 ``` yml
 orbs:
-  rubocop: boxt/rubocop@0.2.1
+  rubocop: boxt/rubocop@0.2.2
 
 ```
 
