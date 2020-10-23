@@ -12,4 +12,9 @@ orbs:
 
 ---<!-- VERSION_SNIPPET_END -->
 
+## Read more
+
+Read about the available commands and how to use them here:
+https://circleci.com/developer/orbs/orb/boxt/rubocop
+
 Part of [boxt/orbs](https://github.com/boxt/orbs)
