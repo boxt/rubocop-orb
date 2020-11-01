@@ -22,8 +22,7 @@ commands:
             git checkout -q << parameters.base >>
             git reset --hard -q origin/<< parameters.base >>
             git checkout -q $CIRCLE_BRANCH
-
       - run:
           name: "Run RuboCop"
           command: |
-            bundle exec rails lint:rubocop RUBOCOP_LINT_BASE=<< parameters.base >>
+            bundle exec rake lint:rubocop RUBOCOP_LINT_BASE=<< parameters.base >>
