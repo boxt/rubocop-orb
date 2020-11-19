@@ -1,6 +1,6 @@
 version: 2.1
 
-description: Tasks for integrating Boxt's RuboCop style guide
+description: Tasks for integrating the Boxt Rubocop style guide
 
 display:
   home_url: "https://github.com/boxt/orbs"
@@ -8,22 +8,10 @@ display:
 
 commands:
   lint:
-    parameters:
-      base:
-        description: The base branch to diff changes against. Used to find changed files.
-        type: string
-        default: develop
-
-    description: Run the linter against changes made on this branch
+    description: Run the linter against changes made on the current branch
     steps:
       - run:
-          name: "Prepare git repo for diff"
+          name: "Run lint:rubocop against the git diff"
           command: |
-            git checkout -q << parameters.base >>
-            git reset --hard -q origin/<< parameters.base >>
             git checkout -q $CIRCLE_BRANCH
-
-      - run:
-          name: "Run RuboCop"
-          command: |
-            bundle exec rails lint:rubocop RUBOCOP_LINT_BASE=<< parameters.base >>
+            bundle exec rake lint:rubocop
