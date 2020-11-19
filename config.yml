@@ -1,6 +1,6 @@
 version: 2.1
 
-description: Tasks for integrating the Boxt Rubocop style guide
+description: Tasks for integrating Boxt's RuboCop style guide
 
 display:
   home_url: "https://github.com/boxt/orbs"
@@ -8,10 +8,8 @@ display:
 
 commands:
   lint:
-    description: Run the linter against changes made on the current branch
+    description: Run rubocop against the codebase
     steps:
       - run:
-          name: "Run lint:rubocop against the git diff"
-          command: |
-            git checkout -q $CIRCLE_BRANCH
-            bundle exec rake lint:rubocop
+          name: "Run RuboCop"
+          command: bundle exec rubocop
