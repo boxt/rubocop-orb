@@ -8,22 +8,8 @@ display:
 
 commands:
   lint:
-    parameters:
-      base:
-        description: The base branch to diff changes against. Used to find changed files.
-        type: string
-        default: develop
-
-    description: Run the linter against changes made on this branch
+    description: Run rubocop against the codebase
     steps:
       - run:
-          name: "Prepare git repo for diff"
-          command: |
-            git checkout -q << parameters.base >>
-            git reset --hard -q origin/<< parameters.base >>
-            git checkout -q $CIRCLE_BRANCH
-
-      - run:
           name: "Run RuboCop"
-          command: |
-            bundle exec rails lint:rubocop RUBOCOP_LINT_BASE=<< parameters.base >>
+          command: bundle exec rubocop
