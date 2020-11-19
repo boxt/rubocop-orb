@@ -1,12 +1,11 @@
 BOXT CircleCI Rubocop orb
 
-
 <!-- VERSION_SNIPPET_START -->
 ## Add to your config.yml
 
 ``` yml
 orbs:
-  rubocop: boxt/rubocop@0.2.2
+  rubocop: boxt/rubocop@0.3.0
 
 ```
 
