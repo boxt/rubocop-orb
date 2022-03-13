@@ -4,7 +4,7 @@ description: Tasks for integrating Boxt's RuboCop style guide
 
 display:
   home_url: "https://github.com/boxt/orbs"
-  source_url: "https://github.com/boxt/rubocop-orb/blob/master/config.yml"
+  source_url: "https://github.com/boxt/rubocop-orb/blob/main/config.yml"
 
 commands:
   lint:
